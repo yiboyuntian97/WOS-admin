@@ -1,12 +1,13 @@
 package com.wangyb.sell.service.impl;
 
-import com.wangyb.sell.dataObject.ProductCategory;
-import com.wangyb.sell.repository.ProductCategoryRepository;
-import com.wangyb.sell.service.CategoryService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.wangyb.sell.dataObject.ProductCategory;
+import com.wangyb.sell.repository.ProductCategoryRepository;
+import com.wangyb.sell.service.CategoryService;
 
 /**
  * 商品类目业务层实现
@@ -14,26 +15,26 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Autowired
-    private ProductCategoryRepository repository;
+	@Autowired
+	private ProductCategoryRepository repository;
 
-    @Override
-    public ProductCategory findOne(Integer categoryId) {
-        return repository.findOne(categoryId);
-    }
+	@Override
+	public ProductCategory findOne(Integer categoryId) {
+		return repository.findOne(categoryId);
+	}
 
-    @Override
-    public List<ProductCategory> findAll() {
-        return repository.findAll();
-    }
+	@Override
+	public List<ProductCategory> findAll() {
+		return repository.findAll();
+	}
 
-    @Override
-    public List<ProductCategory> findByCaAndCategoryTypeIn(List<Integer> categoryTypeList) {
-        return repository.findByCaAndCategoryTypeIn(categoryTypeList);
-    }
+	@Override
+	public List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList) {
+		return repository.findByCategoryTypeIn(categoryTypeList);
+	}
 
-    @Override
-    public ProductCategory save(ProductCategory productCategory) {
-        return repository.save(productCategory);
-    }
+	@Override
+	public ProductCategory save(ProductCategory productCategory) {
+		return repository.save(productCategory);
+	}
 }
