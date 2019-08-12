@@ -17,9 +17,11 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductInfoRepository repository;
 
+
+
     @Override
     public ProductInfo findOne(String productId) {
-        return repository.findOne(productId);
+         return repository.findByProductId(productId);
     }
 
     @Override
