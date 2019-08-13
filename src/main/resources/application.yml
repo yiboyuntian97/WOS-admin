@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
@@ -9,6 +11,8 @@ spring:
 server:
   servlet:
     context-path: /sell
+  port: 8083
+
 
 #logging:
 #  pattern:

@@ -1,5 +1,6 @@
 package com.wangyb.sell.enums;
 
+import lombok.Data;
 import lombok.Getter;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,5 +18,13 @@ public enum ProductSattusEnum {
     ProductSattusEnum(Integer code,String message){
         this.code = code;
         this.message = message;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
