@@ -2,10 +2,10 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.0.110:3306/sell?characterEncoding=utf-8&userSSL=false
+    jdbc-url: jdbc:mysql://localhost:3306/sell?characterEncoding=utf-8&userSSL=false8&serverTimezone=UTC
   jpa:
     show-sql: true
 server:
