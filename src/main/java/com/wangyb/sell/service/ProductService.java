@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    ProductInfo findOne(String productId);
+    ProductInfo findByProductId(String productId);
 
     List<ProductInfo> findUpAll();
 
