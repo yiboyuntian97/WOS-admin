@@ -5,6 +5,8 @@ import com.wangyb.sell.dataObject.OrderMaster;
 import com.wangyb.sell.dataObject.ProductInfo;
 import com.wangyb.sell.dto.CartDTO;
 import com.wangyb.sell.dto.OrderDTO;
+import com.wangyb.sell.enums.OrderStatusEnum;
+import com.wangyb.sell.enums.PayStatusEnum;
 import com.wangyb.sell.enums.ResultEnum;
 import com.wangyb.sell.exception.SellException;
 import com.wangyb.sell.repository.OrderDetailRepository;
@@ -53,7 +55,7 @@ public class OrderServiceImpl implements OrderService{
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
             //2.计算订单总价
-            orderAmount =orderDetail.getProductPrice()
+            orderAmount =productInfo.getProductPrice()
                     .multiply(new BigDecimal(orderDetail.getProductQuantity())).add(orderAmount);
             //3.订单详情入库
             orderDetail.setDetailId(KeyUtil.genUniqueKey());
@@ -66,14 +68,14 @@ public class OrderServiceImpl implements OrderService{
 
         //3.写入订单数据库（orderMaster,orderDetail）
         OrderMaster orderMaster = new OrderMaster();
+        BeanUtils.copyProperties(orderDTO,orderMaster);
         orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
-        BeanUtils.copyProperties(orderDTO,orderMaster);
+        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
+        orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
         orderMasterRepository.save(orderMaster);
         //4.扣库存
-        List<CartDTO> cartDTOList = new ArrayList<>();
-
-        orderDTO.getOrderDetailList().stream().map(e -> new CartDTO(e.getProductId(),e.getProductQuantity()) )
+        List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream().map(e -> new CartDTO(e.getProductId(),e.getProductQuantity()) )
                 .collect(Collectors.toList());
 
         productService.decreaseStock(cartDTOList);

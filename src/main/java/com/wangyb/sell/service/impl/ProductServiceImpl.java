@@ -48,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    // TODO: 扣库存避免超卖待优化
     @Override
     @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
