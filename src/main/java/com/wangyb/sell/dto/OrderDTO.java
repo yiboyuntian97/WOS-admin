@@ -1,8 +1,11 @@
 package com.wangyb.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.wangyb.sell.dataObject.OrderDetail;
 import com.wangyb.sell.enums.OrderStatusEnum;
 import com.wangyb.sell.enums.PayStatusEnum;
+import com.wangyb.sell.util.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import javax.persistence.Id;
@@ -11,6 +14,8 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+//@JsonSerialize()
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
     /**
@@ -57,11 +62,13 @@ public class OrderDTO {
     /**
      * 创建时间
      */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     /**
