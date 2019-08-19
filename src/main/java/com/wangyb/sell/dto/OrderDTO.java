@@ -163,4 +163,11 @@ public class OrderDTO {
     public void setOrderDetailList(List<OrderDetail> orderDetailList) {
         this.orderDetailList = orderDetailList;
     }
+
+//    public OrderStatusEnum getOrderStatusEnum(){
+//        orderStatus
+//    }
+//    public PayStatusEnum getPayStatusEnum(){
+//
+//    }
 }

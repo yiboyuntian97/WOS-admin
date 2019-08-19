@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
-    Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
+//    Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
 
     @Override
@@ -195,5 +195,13 @@ public class OrderServiceImpl implements OrderService{
             throw new SellException(ResultEnum.ORDER_UODATE_FAIL);
         }
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+        Page<OrderDTO> orderDTOPage = new PageImpl<OrderDTO>(orderDTOList,pageable,orderMasterPage.getTotalElements());
+        return orderDTOPage;
     }
 }
