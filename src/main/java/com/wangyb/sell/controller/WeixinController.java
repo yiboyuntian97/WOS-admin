@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class WeixinController {
 
-    Logger log = LoggerFactory.getLogger(WeixinController.class);
+//    Logger log = LoggerFactory.getLogger(WeixinController.class);
 
     @GetMapping("auth")
     public void auth(@RequestParam("code") String code) {
