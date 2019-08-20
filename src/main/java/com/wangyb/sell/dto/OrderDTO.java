@@ -1,10 +1,12 @@
 package com.wangyb.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.wangyb.sell.dataObject.OrderDetail;
 import com.wangyb.sell.enums.OrderStatusEnum;
 import com.wangyb.sell.enums.PayStatusEnum;
+import com.wangyb.sell.util.EnumUtil;
 import com.wangyb.sell.util.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -162,5 +164,16 @@ public class OrderDTO {
 
     public void setOrderDetailList(List<OrderDetail> orderDetailList) {
         this.orderDetailList = orderDetailList;
+    }
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum(){
+        return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum(){
+        return EnumUtil.getByCode(payStatus,PayStatusEnum.class);
+
     }
 }
