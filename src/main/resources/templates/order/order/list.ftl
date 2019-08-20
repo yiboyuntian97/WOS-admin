@@ -33,7 +33,7 @@
                         <td>${orderDTO.orderStatusEnum.message}</td>
                         <td>${orderDTO.payStatusEnum.message}</td>
                         <td>${orderDTO.createTime}</td>
-                        <td>详情</td>
+                        <td><a href="/sell/seller/order/detail?orderId=${orderDTO.orderId}">详情</a></td>
                         <td>
                             <#if orderDTO.getOrderStatusEnum().message != "已取消">
                             <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}">取消</a>
