@@ -38,4 +38,30 @@ public class SellerProductController {
         return new ModelAndView("order/product/list",map);
     }
 
+    @GetMapping("/on_sale")
+    public ModelAndView onSale(@RequestParam("productId") String productId,Map<String,Object> map) {
+        try{
+            productService.onSale(productId);
+        }catch (Exception e){
+            map.put("msg",e.getMessage());
+            map.put("url","/sell/seller/product/list");
+            return new ModelAndView("order/common/error",map);
+        }
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("order/common/success",map);
+    }
+
+    @GetMapping("/off_sale")
+    public ModelAndView offSale(@RequestParam("productId") String productId,Map<String,Object> map) {
+        try{
+            productService.offSale(productId);
+        }catch (Exception e){
+            map.put("msg",e.getMessage());
+            map.put("url","/sell/seller/product/list");
+            return new ModelAndView("order/common/error",map);
+        }
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("order/common/success",map);
+    }
+
 }
