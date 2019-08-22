@@ -1,6 +1,9 @@
 package com.wangyb.sell.dataObject;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wangyb.sell.enums.ProductSattusEnum;
+import com.wangyb.sell.util.EnumUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 商品
@@ -61,6 +65,10 @@ public class ProductInfo {
      * 类目编号
      */
     private Integer categoryType;
+
+    private Date createTime;
+
+    private Date updateTime;
 
     public String getProductId() {
         return productId;
@@ -124,5 +132,10 @@ public class ProductInfo {
 
     public void setCategoryType(Integer categoryType) {
         this.categoryType = categoryType;
+    }
+
+    @JsonIgnore
+    public ProductSattusEnum getProductStatusEnum(){
+        return EnumUtil.getByCode(productStatus,ProductSattusEnum.class);
     }
 }
