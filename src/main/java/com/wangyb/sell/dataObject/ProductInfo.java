@@ -59,7 +59,7 @@ public class ProductInfo {
     /**
      * 上架状态
      */
-    private Integer productStatus;
+    private Integer productStatus = ProductSattusEnum.UP.getCode();
 
     /**
      * 类目编号
