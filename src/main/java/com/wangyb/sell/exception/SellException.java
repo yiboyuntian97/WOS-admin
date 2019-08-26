@@ -1,7 +1,9 @@
 package com.wangyb.sell.exception;
 
 import com.wangyb.sell.enums.ResultEnum;
+import lombok.Getter;
 
+@Getter
 public class SellException extends  RuntimeException {
 
     private Integer code;
