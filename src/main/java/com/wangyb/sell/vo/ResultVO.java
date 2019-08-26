@@ -2,8 +2,10 @@ package com.wangyb.sell.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class ResultVO<T> {
+public class ResultVO<T> implements Serializable {
 
     /**
      * 错误码

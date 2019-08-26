@@ -14,6 +14,7 @@ import com.wangyb.sell.repository.OrderDetailRepository;
 import com.wangyb.sell.repository.OrderMasterRepository;
 import com.wangyb.sell.service.OrderService;
 import com.wangyb.sell.service.ProductService;
+import com.wangyb.sell.service.WebSocket;
 import com.wangyb.sell.util.KeyUtil;
 //import lombok.extern.slf4j.Slf4j;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private WebSocket webSocket;
 
 //    Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
@@ -92,6 +96,9 @@ public class OrderServiceImpl implements OrderService{
                 .collect(Collectors.toList());
 
         productService.decreaseStock(cartDTOList);
+
+        // 发送websocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
